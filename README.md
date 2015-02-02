@@ -62,7 +62,7 @@ HTTP заголовки запроса:
 Тело запроса: 
      {"num":"а001кк12”,”login”:”your_login_here”,”email”:”your_email_here@mail.com”}
 
-     num - utf8 (кириллица); 
+     num - гос.номер автомобиля в кодировке utf8 (кириллица); 
      login - логин, который вы получили от нас;
      email - ваш e-mail (не клиента).
 
@@ -98,6 +98,18 @@ HTTP заголовки запроса:
 В случае успеха - тело ответа будет содержать JSON вида:
 ```javascript
 { link: 'http://www.adaperio.ru/engine.html#/success?InvId=3269587&OutSum=100.000000&SignatureValue=1813ba713a5ee12abf0b7bb3e669d072' }
+```
+
+### Подпись Signature для метода #3 генерируется таким образом:
+
+```javascript
+function generateSignature(orderId){
+     // например: ”100.000000:3269587:ABCDEFG123QWERTY_SUPER_SECRET”
+
+     var s = '' + SUM + ':' + orderId + ':' + PASSWORD;
+     var hash = crypto.createHash('md5').update(s).digest("hex");
+     return hash;
+}
 ```
 
 **link** и будет являться конечной ссылкой, которую можно передать пользователю. SignatureValue в ссылке не имеет ничего общего с секретной подписью из метода 2. 
