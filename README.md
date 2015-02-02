@@ -1,4 +1,4 @@
-# adaperio-partners-api
+# Партнерский Программный Интерфейс Adaperio.ru
 
 ## Для работы с Adaperio через партнерский API нужно:
 
@@ -53,9 +53,10 @@ POST /v1/partner_orders
 
 Тело запроса: 
      {"num":"а001кк12”,”login”:”your_login_here”,”email”:”your_email_here@mail.com”}
+
      num - utf8 (кириллица); 
      login - логин, который вы получили от нас;
-     email - ваш e-mail (не клиента);
+     email - ваш e-mail (не клиента).
 
 Возвращается: 200 + значение OrderID в теле ответа;
               404 если произошла ошибка.
@@ -96,7 +97,7 @@ HTTP заголовки запроса:
 
 В случае успеха - тело ответа будет содержать JSON вида:
 ```javascript
-{ link: 'http://www.adaperio.ru/engine.html#/success?InvId=3269587&OutSum=200.000000&SignatureValue=1813ba713a5ee12abf0b7bb3e669d072' }
+{ link: 'http://www.adaperio.ru/engine.html#/success?InvId=3269587&OutSum=100.000000&SignatureValue=1813ba713a5ee12abf0b7bb3e669d072' }
 ```
 
 **link** и будет являться конечной ссылкой, которую можно передать пользователю. SignatureValue в ссылке не имеет ничего общего с секретной подписью из метода 2. 
