@@ -3,20 +3,11 @@ var crypto = require('crypto');
 var https = require('https');
 var assert = require('assert');
 
-var SUM      = '100.000000';
-
 var LOGIN = '';     // TODO: set your login here
 var PASSWORD = '';  // TODO: set your password here
 
 // Required to make sure that https will 100% work even with bad certificate on out side))
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
-// Signature is a secret string that is checked when partner buys report.
-function generatePartnerSignature(orderId){
-     var s = '' + SUM + ':' + orderId + ':' + PASSWORD;
-     var hash = crypto.createHash('md5').update(s).digest("hex");
-     return hash;
-}
 
 // *****************************************************************************
 describe('ADAPERIO PARTNER-interaction module',function(){
@@ -63,71 +54,26 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           });
      })
 
-     it('should create new Order', function(done){
-          var num = 'а999му199';
-          var out  = {
-               login: LOGIN,  
-               num: num       // cyr utf-8 symbols
-          };
-
-          // WARNING: .length won't work because we have Cyr symbols that are multibyte. 
-          var post_data = JSON.stringify(out);
-          var lenInBytes = Buffer.byteLength(post_data, 'utf8');
-
-          var post_options = {
-               host: 'api.adaperio.ru',
-               // should be something like POST /v1/parners/:login/orders, but that is how it was implemented first...
-               path: '/v1/partner_orders',
-               method: 'POST',
-               headers: {
-               'Content-Type': 'application/json',
-               'Content-Length': lenInBytes
-               }
-          };
-
-          var req = https.request(post_options, function (res) {
-               assert.equal(200, res.statusCode);
-
-               var data = '';
-
-               res.on('data', function (chunk) {
-                    data += chunk;
-               });
-
-               res.on('end', function () {
-                    // check data
-                    var obj = JSON.parse(data);
-                    orderId = obj.id;
-
-                    assert.notEqual(obj.id,0);
-                    done();
-               });
-          });
-
-          req.write(post_data);
-          req.end();
-     })
-
-     // this costs money
      it('should buy order', function(done){
-          var sig = generatePartnerSignature(orderId);
+          var login = LOGIN;
+          var pass  = PASSWORD;
 
-          // orderId is retrieved in a method above
-          var path = "/v1/buy_order/" + orderId;
-          var payload = {
-               OutSum:SUM,
-               SignatureValue:sig
-          };
-          var post_data = JSON.stringify(payload);
+          var num = 'а999му199';
+          var numEncoded = encodeURIComponent(num);    // url encoding
 
+          var path = '/v2/partners/' + 
+               login + '/report_by_num/' + 
+               numEncoded + 
+               '?password=' + pass;
+
+          //console.log('-->PATH: ' + path);
+
+          // this is what Robokassa gives us
           var post_options = {
                host: 'api.adaperio.ru',
+               port: '443',
                path: path,
-               method: 'POST',
-               headers: {
-                    'Content-Type': 'application/json',
-                    'Content-Length': post_data.length
-               }
+               method: 'GET'
           };
 
           var req = https.request(post_options, function (res) {
@@ -144,14 +90,14 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                     // Final result
                     assert.notEqual(parsed.link.length,0);
 
-                    console.log('Result: ');
+                    console.log('-->RESULT: ');
                     console.log(parsed);
 
                     done();
                });
           });
      
-          req.write(post_data);
+          req.write('');
           req.end();
      })
 })
