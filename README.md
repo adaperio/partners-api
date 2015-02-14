@@ -103,9 +103,9 @@ GET /v2/partners/:login/report_by_num/:num?password=12345
               404 (Not Found), если произошла ошибка.
 ```
 
-login - ваш логин;
-num - гос.номер автомобиля в кодировке utf8 (кириллица), закодирован в URL encode;
-password - ваш пароль.
++ login - ваш логин;
++ num - гос.номер автомобиля в кодировке utf8 (кириллица), закодирован в URL encode;
++ password - ваш пароль.
 
 В случае успеха - тело ответа будет содержать JSON вида:
 ```javascript
