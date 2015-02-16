@@ -72,11 +72,9 @@ GET /v1/data_for_cars/:num
      "customsFound":false,
 
      // В розыске ли автомобиль
-     // (только при запросе с gibdd_check==1)
      "gibddWanted":false,
 
      // Есть ли ограничения
-     // (только при запросе с gibdd_check==1)
      "gibddRestricted":false,
 
      // Есть ли информация о комплектации
