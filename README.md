@@ -110,7 +110,11 @@ GET /v2/partners/:login/report_by_num/:num?password=12345
 
 В случае успеха - тело ответа будет содержать JSON вида:
 ```javascript
-{ link: 'http://www.adaperio.ru/engine.html#/success?InvId=3269587&OutSum=100.000000&SignatureValue=1813ba713a5ee12abf0b7bb3e669d072' }
+{ 
+     link: 'http://www.adaperio.ru/engine.html#/success?InvId=3269587&OutSum=100.000000&SignatureValue=1813ba713a5ee12abf0b7bb3e669d072',
+     signature: 1813ba713a5ee12abf0b7bb3e669d072,
+     invId: 3269587
+}
 ```
 
 **link** и будет являться ссылкой, которую можно передать пользователю. Время жизни такой ссылки - месяц. 

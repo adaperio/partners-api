@@ -89,6 +89,8 @@ describe('ADAPERIO PARTNER-interaction module',function(){
 
                     // Final result
                     assert.notEqual(parsed.link.length,0);
+                    assert.notEqual(parsed.signature,0);
+                    assert.notEqual(parsed.invId,0);
 
                     console.log('-->RESULT: ');
                     console.log(parsed);
