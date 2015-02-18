@@ -5,9 +5,12 @@ var assert = require('assert');
 
 var LOGIN = '';     // TODO: set your login here
 var PASSWORD = '';  // TODO: set your password here
+var EMAILS = 'one@gmail.com,two@yandex.ru'; // TODO: send report here
 
 // Required to make sure that https will 100% work even with bad certificate on out side))
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
+var g_invId = 0;
 
 // *****************************************************************************
 describe('ADAPERIO PARTNER-interaction module',function(){
@@ -68,7 +71,6 @@ describe('ADAPERIO PARTNER-interaction module',function(){
 
           //console.log('-->PATH: ' + path);
 
-          // this is what Robokassa gives us
           var post_options = {
                host: 'api.adaperio.ru',
                port: '443',
@@ -92,9 +94,47 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                     assert.notEqual(parsed.signature,0);
                     assert.notEqual(parsed.invId,0);
 
+                    g_invId = parsed.invId;
+
                     console.log('-->RESULT: ');
                     console.log(parsed);
 
+                    done();
+               });
+          });
+     
+          req.write('');
+          req.end();
+     })
+
+     it('should send email as requested', function(done){
+          var login = LOGIN; 
+          var pass  = PASSWORD;
+          var emails = EMAILS;
+
+          var emailAddresses = encodeURIComponent(emails);    // url encoding
+
+          var path = '/v2/partners/' + 
+               login + 
+               '/orders/' + g_invId + 
+               '/email_report/' + emailAddresses + 
+               '?password=' + pass;
+
+          var post_options = {
+               host: 'api.adaperio.ru',
+               port: '443',
+               path: path,
+               method: 'GET'
+          };
+
+          var req = https.request(post_options, function (res) {
+               var data = '';
+               res.on('data', function (chunk) {
+                    data += chunk;
+               });
+
+               res.on('end', function () {
+                    assert.equal(200, res.statusCode);
                     done();
                });
           });
