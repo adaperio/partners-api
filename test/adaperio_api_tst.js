@@ -142,4 +142,52 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           req.write('');
           req.end();
      })
+
+     it('should buy by vin', function(done){
+          var login = LOGIN; 
+          var pass  = PASSWORD;
+          var vin = 'WAUZZZ4G5CN021391'; 
+
+          var path = '/v2/partners/' + 
+               login + '/report_by_vin/' + 
+               vin + 
+               '?password=' + pass;
+
+          //console.log('-->PATH: ' + path);
+
+          var post_options = {
+               host: 'api.adaperio.ru',
+               port: '443',
+               path: path,
+               method: 'GET'
+          };
+
+          var req = https.request(post_options, function (res) {
+               var data = '';
+               res.on('data', function (chunk) {
+                    data += chunk;
+               });
+
+               res.on('end', function () {
+                    assert.equal(200, res.statusCode);
+
+                    var parsed = JSON.parse(data);
+
+                    // Final result
+                    assert.notEqual(parsed.link.length,0);
+                    assert.notEqual(parsed.signature,0);
+                    assert.notEqual(parsed.invId,0);
+
+                    //g_invId2 = parsed.invId;
+
+                    console.log('-->RESULT: ');
+                    console.log(parsed);
+
+                    done();
+               });
+          });
+     
+          req.write('');
+          req.end();
+     })
 })
