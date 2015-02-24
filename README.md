@@ -50,13 +50,16 @@ GET /v1/data_for_cars/:num
      "num":"а001кк12",
      "vin":"XTA2*********1931",
      "carModel":"ВАЗ 21102 ЛЕГКОВОЙ",
-     "year":"2000"
+     "year":"2000",
+
+     // Если false - отчет "дешевый" (100 руб), если true - отчет "дорогой" (более 100 руб)
+     "extendedReport":true,
 
      // ДТП (у автомобилей Мск региона ДТП может быть найдено после покупки отчета) 
      "accidentFound":false,
 
      // Найдены ли данные с аукционов
-     “auctionsFound”: true,
+     “auctionsFound”:true,
 
      // Найдены ли фотографии ДТП/повреждений
      “picsFound":false,
@@ -80,7 +83,13 @@ GET /v1/data_for_cars/:num
      "gibddRestricted":false,
 
      // Есть ли информация о комплектации
-     "equipInfoFound":false 
+     "equipInfoFound":false,
+
+     // CARFAX отчет
+     "carfaxFound": true,
+
+     // Данные о ремонтных работах
+     "repairsFound": true
 
      ...
 }
