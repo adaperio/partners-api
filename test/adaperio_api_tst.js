@@ -28,7 +28,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var num = 'а999му199';
           var numEncoded = encodeURIComponent(num);    // url encoding
 
-          https.get('https://api.adaperio.ru/v1/data_for_cars/' + numEncoded, function (res) {
+          https.get('https://partner.api.adaperio.ru/v1/data_for_cars/' + numEncoded, function (res) {
                assert.equal(200, res.statusCode);
 
                var data = '';
@@ -72,7 +72,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           //console.log('-->PATH: ' + path);
 
           var post_options = {
-               host: 'api.adaperio.ru',
+               host: 'partner.api.adaperio.ru',
                port: '443',
                path: path,
                method: 'GET'
@@ -121,7 +121,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                '?password=' + pass;
 
           var post_options = {
-               host: 'api.adaperio.ru',
+               host: 'partner.api.adaperio.ru',
                port: '443',
                path: path,
                method: 'GET'
@@ -156,7 +156,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           //console.log('-->PATH: ' + path);
 
           var post_options = {
-               host: 'api.adaperio.ru',
+               host: 'partner.api.adaperio.ru',
                port: '443',
                path: path,
                method: 'GET'
