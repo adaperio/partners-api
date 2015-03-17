@@ -25,6 +25,24 @@
 
 В результате выполнения тестов - вы произведете тестовую покупку и получите ссылку на отчет об автомобиле **а999му199**
 
+## Примеры отчетов:
+ГИБДД, регистрация, комплектация, ремонтные работы:
+http://www.adaperio.ru/engine.html#/success?InvId=260296010&OutSum=350.000000&SignatureValue=07d964edd08c18afa8e2a65d7bf655b0
+
+Документ об участии в ДТП + фото:
+http://www.adaperio.ru/engine.html#/success?InvId=848359114&OutSum=350.000000&SignatureValue=300d11d9571e9a1c9c3bef587cb1846f
+
+Данные о ДТП:
+http://www.adaperio.ru/engine.html#/success?InvId=525436883&OutSum=150.000000&SignatureValue=eded3a4512ca93ce23d8cbedc1ef68bd
+
+CARFAX: 
+http://www.adaperio.ru/engine.html#/success?InvId=103577658&OutSum=350.000000&SignatureValue=53902d2cd12cad1571c478a2681f2cef
+
+Такси:
+http://www.adaperio.ru/engine.html#/success?InvId=467522148&SignatureValue=afcc08b3f5ce549829de7226b2521400
+
+Залоговые аукционы:
+
 ## Описание API
 Для работы используются REST-подобное API с JSON в качестве передаваемых данных. 
 Адреса наших backend серверов: **partner.api.adaperio.ru**.
@@ -47,7 +65,7 @@ GET /v1/data_for_cars/:num
 Тело ответа:
 ```javascript
 [{
-     "num":"а001кк12",
+     "nums":["а001кк12","а001кк14"]
      "vin":"XTA2*********1931",
      "carModel":"ВАЗ 21102 ЛЕГКОВОЙ",
      "year":"2000",
@@ -71,7 +89,9 @@ GET /v1/data_for_cars/:num
      "milleageFound":true,
 
      // Фотографии автомобиля
-     "autoNomerPics":[],
+     "autoNomerPics":[
+          "http://img02.avto-nomer.ru/005/m/ru2609272.jpg" 
+     ],
 
      // Найдены ли сведения из таможни
      "customsFound":false,
@@ -86,7 +106,7 @@ GET /v1/data_for_cars/:num
      "equipInfoFound":false,
 
      // CARFAX отчет
-     "carfaxFound": true,
+     "carfaxInfoFound": true,
 
      // Данные о ремонтных работах
      "repairsFound": true
@@ -228,3 +248,22 @@ GET /v1/cars_by_order/:invId?signature=b76c0883ca7c4c623315183f6ab2cb0e
 + signature - значение получено из ссылки, которую вернул метод №2.
 
 Описание формата данных отсутсвует.
+
+### 6. Проверить баланс
+
+```javascript
+GET /v1/partners/:login/balance?password=12345
+
+Выполняется следующее:
+    1. Проверяет логин и пароль партнера.
+    2. Проверяет баланс.
+    3. Возвращает статус.
+
+Возвращается: 200 (OK), если баланс не нулевой.
+              401 (Unauthorized), если введен неверный логин/пароль.
+              402 (Payment Required), если баланс нулевой.
+              404 (Not Found), если произошла ошибка.
+```
+
++ login - ваш логин;
++ password - ваш пароль.
