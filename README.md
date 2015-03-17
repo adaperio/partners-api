@@ -42,6 +42,7 @@ http://www.adaperio.ru/engine.html#/success?InvId=103577658&OutSum=350.000000&Si
 http://www.adaperio.ru/engine.html#/success?InvId=467522148&SignatureValue=afcc08b3f5ce549829de7226b2521400
 
 Залоговые аукционы:
+http://www.adaperio.ru/engine.html#/success?InvId=313480536&SignatureValue=50798f6f4d097accbcde18542ad54fb2
 
 ## Описание API
 Для работы используются REST-подобное API с JSON в качестве передаваемых данных. 
