@@ -250,7 +250,7 @@ GET /v1/cars_by_order/:invId?signature=b76c0883ca7c4c623315183f6ab2cb0e
 
 Описание формата данных отсутсвует.
 
-### 6. Проверить баланс
+### 7. Проверить баланс
 
 ```javascript
 GET /v1/partners/:login/balance?password=12345
