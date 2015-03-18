@@ -62,12 +62,16 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var pass  = PASSWORD;
 
           var num = 'а999му199';
+          var emails = 'mail1@some_mail.ru, mail2@some_mail.ru';
+
           var numEncoded = encodeURIComponent(num);    // url encoding
+          var emailsEncoded = encodeURIComponent(emails);    // url encoding
 
           var path = '/v2/partners/' + 
                login + '/report_by_num/' + 
                numEncoded + 
-               '?password=' + pass;
+               '?password=' + pass +
+               '&emails=' + emailsEncoded;
 
           //console.log('-->PATH: ' + path);
 
@@ -147,11 +151,15 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var login = LOGIN; 
           var pass  = PASSWORD;
           var vin = 'WAUZZZ4G5CN021391'; 
+          var emails = 'mail1@some_mail.ru, mail2@some_mail.ru';
+
+          var emailsEncoded = encodeURIComponent(emails);    // url encoding
 
           var path = '/v2/partners/' + 
                login + '/report_by_vin/' + 
                vin + 
-               '?password=' + pass;
+               '?password=' + pass +
+               '&emails=' + emailsEncoded;
 
           //console.log('-->PATH: ' + path);
 
