@@ -142,7 +142,7 @@ GET /v2/partners/:login/report_by_num/:num
 Тело - JSON вида:
 { 
      password: '12345',
-     emails: 'test%40mail.ru%2C%20test2%40mail.ru'
+     emails: 'test@mail.ru, test2@mail.ru'
 }
 
 Выполняется следующее:
@@ -161,8 +161,8 @@ GET /v2/partners/:login/report_by_num/:num
 
 + login - ваш логин;
 + num - гос.номер автомобиля в кодировке utf8 (кириллица), закодирован в 'URL encoding';
-+ password - ваш пароль.
-+ emails - список e-mail адресов получателей (разделенный запятыми), закодирован в 'URL encoding';
++ password - ваш пароль;
++ emails - список e-mail адресов получателей (разделенный запятыми).
 
 В случае успеха - тело ответа будет содержать JSON вида:
 ```javascript
@@ -187,7 +187,7 @@ GET /v2/partners/:login/report_by_vin/:vin
 Тело - JSON вида:
 { 
      password: '12345',
-     emails: 'test%40mail.ru%2C%20test2%40mail.ru'
+     emails: 'test@mail.ru, test2@mail.ru'
 }
 
 Выполняется следующее:
@@ -206,8 +206,8 @@ GET /v2/partners/:login/report_by_vin/:vin
 
 + login - ваш логин;
 + vin - VIN номер автомобиля (17 символов);
-+ password - ваш пароль.
-+ emails - список e-mail адресов получателей (разделенный запятыми), закодирован в 'URL encoding';
++ password - ваш пароль;
++ emails - список e-mail адресов получателей (разделенный запятыми).
 
 В случае успеха - тело ответа будет содержать JSON вида:
 ```javascript

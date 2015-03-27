@@ -65,11 +65,10 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var emails = 'mail1@some_mail.ru, mail2@some_mail.ru';
 
           var numEncoded = encodeURIComponent(num);    // url encoding
-          var emailsEncoded = encodeURIComponent(emails);    // url encoding
 
           var body = {
                password: pass,
-               emails: emailsEncoded
+               emails: emails
           };
           var post_data = JSON.stringify(body);
 
@@ -161,11 +160,9 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var vin = 'WAUZZZ4G5CN021391'; 
           var emails = 'mail1@some_mail.ru, mail2@some_mail.ru';
 
-          var emailsEncoded = encodeURIComponent(emails);    // url encoding
-
           var body = {
                password: pass,
-               emails: emailsEncoded
+               emails: emails
           };
           var post_data = JSON.stringify(body);
 
