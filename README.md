@@ -137,7 +137,13 @@ GET /v1/data_for_cars_by_vin/:vin
 ### 3. Получить отчет
 
 ```javascript
-GET /v2/partners/:login/report_by_num/:num?password=12345&emails=test%40mail.ru%2C%20test2%40mail.ru
+GET /v2/partners/:login/report_by_num/:num
+
+Тело - JSON вида:
+{ 
+     password: '12345',
+     emails: 'test%40mail.ru%2C%20test2%40mail.ru'
+}
 
 Выполняется следующее:
     1. Проверяет логин и пароль партнера.
@@ -176,7 +182,13 @@ GET /v2/partners/:login/report_by_num/:num?password=12345&emails=test%40mail.ru%
 ### 4. Получить отчет по VIN
 
 ```javascript
-GET /v2/partners/:login/report_by_vin/:vin?password=12345&emails=test%40mail.ru%2C%20test2%40mail.ru
+GET /v2/partners/:login/report_by_vin/:vin
+
+Тело - JSON вида:
+{ 
+     password: '12345',
+     emails: 'test%40mail.ru%2C%20test2%40mail.ru'
+}
 
 Выполняется следующее:
     1. Проверяет логин и пароль партнера.
@@ -214,7 +226,12 @@ GET /v2/partners/:login/report_by_vin/:vin?password=12345&emails=test%40mail.ru%
 ### 5. (ОПЦИОНАЛЬНО) Послать письмо c pdf отчетом на e-mail (возможно несколько) по номеру заказа
 
 ```javascript
-GET /v2/partners/:login/orders/:invId/email_report/:emails?password=12345
+GET /v2/partners/:login/orders/:invId/email_report/:emails
+
+Тело - JSON вида:
+{ 
+     password: '12345',
+}
 
 Выполняется следующее:
     1. Проверяет логин и пароль партнера.
@@ -257,7 +274,12 @@ GET /v1/cars_by_order/:invId?signature=b76c0883ca7c4c623315183f6ab2cb0e
 ### 7. Проверить баланс
 
 ```javascript
-GET /v1/partners/:login/balance?password=12345
+GET /v1/partners/:login/balance
+
+Тело - JSON вида:
+{ 
+     password: '12345',
+}
 
 Выполняется следующее:
     1. Проверяет логин и пароль партнера.

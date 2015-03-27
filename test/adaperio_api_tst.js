@@ -67,19 +67,23 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var numEncoded = encodeURIComponent(num);    // url encoding
           var emailsEncoded = encodeURIComponent(emails);    // url encoding
 
-          var path = '/v2/partners/' + 
-               login + '/report_by_num/' + 
-               numEncoded + 
-               '?password=' + pass +
-               '&emails=' + emailsEncoded;
+          var body = {
+               password: pass,
+               emails: emailsEncoded
+          };
+          var post_data = JSON.stringify(body);
 
-          //console.log('-->PATH: ' + path);
+          var path = '/v2/partners/' + login + '/report_by_num/' + numEncoded;
 
           var post_options = {
                host: 'partner.api.adaperio.ru',
                port: '443',
                path: path,
-               method: 'GET'
+               method: 'GET',
+               headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': post_data.length
+               }
           };
 
           var req = https.request(post_options, function (res) {
@@ -107,7 +111,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                });
           });
      
-          req.write('');
+          req.write(post_data);
           req.end();
      })
 
@@ -117,18 +121,22 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var emails = EMAILS;
 
           var emailAddresses = encodeURIComponent(emails);    // url encoding
+          var body = {
+               password: pass
+          };
+          var post_data = JSON.stringify(body);
 
-          var path = '/v2/partners/' + 
-               login + 
-               '/orders/' + g_invId + 
-               '/email_report/' + emailAddresses + 
-               '?password=' + pass;
+          var path = '/v2/partners/' + login + '/orders/' + g_invId + '/email_report/' + emailAddresses;
 
           var post_options = {
                host: 'partner.api.adaperio.ru',
                port: '443',
                path: path,
-               method: 'GET'
+               method: 'GET',
+               headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': post_data.length
+               }
           };
 
           var req = https.request(post_options, function (res) {
@@ -143,7 +151,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                });
           });
      
-          req.write('');
+          req.write(post_data);
           req.end();
      })
 
@@ -155,11 +163,13 @@ describe('ADAPERIO PARTNER-interaction module',function(){
 
           var emailsEncoded = encodeURIComponent(emails);    // url encoding
 
-          var path = '/v2/partners/' + 
-               login + '/report_by_vin/' + 
-               vin + 
-               '?password=' + pass +
-               '&emails=' + emailsEncoded;
+          var body = {
+               password: pass,
+               emails: emailsEncoded
+          };
+          var post_data = JSON.stringify(body);
+
+          var path = '/v2/partners/' + login + '/report_by_vin/' + vin;
 
           //console.log('-->PATH: ' + path);
 
@@ -167,7 +177,11 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                host: 'partner.api.adaperio.ru',
                port: '443',
                path: path,
-               method: 'GET'
+               method: 'GET',
+               headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': post_data.length
+               }
           };
 
           var req = https.request(post_options, function (res) {
@@ -195,7 +209,45 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                });
           });
      
-          req.write('');
+          req.write(post_data);
+          req.end();
+     })
+
+     it('should check balance', function(done){
+          var login = LOGIN; 
+          var pass  = PASSWORD;
+
+          var d = {
+               password: pass
+          };
+          var post_data = JSON.stringify(d);
+
+          var path = '/v1/partners/' + login + '/balance';
+
+          var post_options = {
+               host: 'partner.api.adaperio.ru',
+               port: '443',
+               path: path,
+               method: 'GET',
+               headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': post_data.length
+               }
+          };
+
+          var req = https.request(post_options, function (res) {
+               var data = '';
+               res.on('data', function (chunk) {
+                    data += chunk;
+               });
+
+               res.on('end', function () {
+                    assert.equal(200, res.statusCode);
+                    done();
+               });
+          });
+     
+          req.write(post_data);
           req.end();
      })
 })
