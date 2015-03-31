@@ -78,7 +78,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                host: 'partner.api.adaperio.ru',
                port: '443',
                path: path,
-               method: 'GET',
+               method: 'POST',
                headers: {
                     'Content-Type': 'application/json',
                     'Content-Length': post_data.length
@@ -131,7 +131,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                host: 'partner.api.adaperio.ru',
                port: '443',
                path: path,
-               method: 'GET',
+               method: 'POST',
                headers: {
                     'Content-Type': 'application/json',
                     'Content-Length': post_data.length
@@ -174,7 +174,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                host: 'partner.api.adaperio.ru',
                port: '443',
                path: path,
-               method: 'GET',
+               method: 'POST',
                headers: {
                     'Content-Type': 'application/json',
                     'Content-Length': post_data.length
@@ -225,7 +225,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                host: 'partner.api.adaperio.ru',
                port: '443',
                path: path,
-               method: 'GET',
+               method: 'POST',
                headers: {
                     'Content-Type': 'application/json',
                     'Content-Length': post_data.length

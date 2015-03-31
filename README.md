@@ -137,7 +137,7 @@ GET /v1/data_for_cars_by_vin/:vin
 ### 3. Получить отчет
 
 ```javascript
-GET /v2/partners/:login/report_by_num/:num
+POST /v2/partners/:login/report_by_num/:num
 
 Тело - JSON вида:
 { 
@@ -182,7 +182,7 @@ GET /v2/partners/:login/report_by_num/:num
 ### 4. Получить отчет по VIN
 
 ```javascript
-GET /v2/partners/:login/report_by_vin/:vin
+POST /v2/partners/:login/report_by_vin/:vin
 
 Тело - JSON вида:
 { 
@@ -226,7 +226,7 @@ GET /v2/partners/:login/report_by_vin/:vin
 ### 5. (ОПЦИОНАЛЬНО) Послать письмо c pdf отчетом на e-mail (возможно несколько) по номеру заказа
 
 ```javascript
-GET /v2/partners/:login/orders/:invId/email_report/:emails
+POST /v2/partners/:login/orders/:invId/email_report/:emails
 
 Тело - JSON вида:
 { 
@@ -274,7 +274,7 @@ GET /v1/cars_by_order/:invId?signature=b76c0883ca7c4c623315183f6ab2cb0e
 ### 7. Проверить баланс
 
 ```javascript
-GET /v1/partners/:login/balance
+POST /v1/partners/:login/balance
 
 Тело - JSON вида:
 { 
