@@ -1,16 +1,46 @@
 var fs = require('fs');
 var crypto = require('crypto');
+var http = require('http');
 var https = require('https');
 var assert = require('assert');
+var url = require('url');
 
 var LOGIN = '';     // TODO: set your login here
 var PASSWORD = '';  // TODO: set your password here
+
 var EMAILS = 'one@g_m_a_il.com,two@y_a_nd_ex.ru'; // TODO: send report here
 
 // Required to make sure that https will 100% work even with bad certificate on out side))
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var g_invId = 0;
+
+// HELPERS:
+// Will send HTTP HEAD request and check if URL exists
+function checkIfFileExistsHttp(path,cb){
+     var parsedUrl = url.parse(path);
+
+     var qs = (parsedUrl.search==null)?"":parsedUrl.search ;
+
+     var options = 
+     {
+          method: 'HEAD', 
+          host: parsedUrl.hostname,
+          path: parsedUrl.pathname + qs,
+          port: 80,
+     };
+
+     var req = http.request(options, function(res) {
+          var good = (res.statusCode==200);
+          cb(good);
+     });
+
+     req.on('error',function(err){
+          cb(false);
+     });
+     req.end();
+}
+
 
 // *****************************************************************************
 describe('ADAPERIO PARTNER-interaction module',function(){
@@ -43,7 +73,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                     assert.equal(parsed.length,1);
                     var car = parsed[0];
 
-                    assert.equal(car.accidentFound,false);
+                    assert.equal(car.accidentFound,true);
                     assert.equal(car.picsFound,true);
                     assert.equal(car.taxiFound,false);
                     assert.equal(car.customsFound,false);
@@ -147,6 +177,54 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                res.on('end', function () {
                     assert.equal(200, res.statusCode);
                     done();
+               });
+          });
+     
+          req.write(post_data);
+          req.end();
+     })
+
+     it('should get link to PDF file', function(done){
+          var login = LOGIN; 
+          var pass  = PASSWORD;
+
+          var body = {
+               password: pass
+          };
+          var post_data = JSON.stringify(body);
+
+          var path = '/v2/partners/' + login + '/orders/' + g_invId + '/pdf_report';
+
+          var post_options = {
+               host: 'partner.api.adaperio.ru',
+               port: '443',
+               path: path,
+               method: 'POST',
+               headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': post_data.length
+               }
+          };
+
+          var req = https.request(post_options, function (res) {
+               var data = '';
+               res.on('data', function (chunk) {
+                    data += chunk;
+               });
+
+               res.on('end', function () {
+                    assert.equal(200, res.statusCode);
+
+                    var parsed = JSON.parse(data);
+                    assert.notEqual(parsed.link.length,0);
+
+                    console.log('PDF link: ' + parsed.link);
+
+                    // send HEAD
+                    checkIfFileExistsHttp(parsed.link,function(res){
+                         assert.equal(res,true);
+                         done();
+                    });
                });
           });
      
