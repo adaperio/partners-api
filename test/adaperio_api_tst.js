@@ -10,7 +10,7 @@ var PASSWORD = '';  // TODO: set your password here
 
 var EMAILS = 'one@g_m_a_il.com,two@y_a_nd_ex.ru'; // TODO: send report here
 
-// Required to make sure that https will 100% work even with bad certificate on out side))
+// Required to make sure that https will 100% work even with bad certificate on our side))
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var g_authToken = 0;
