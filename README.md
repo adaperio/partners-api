@@ -159,7 +159,7 @@ POST /partners/:login/authenticate/v2
 В случае успеха - тело ответа будет содержать JSON вида:
 ```javascript
 { 
-     token: 'KEEP_ME'    // JavaWebToken
+     token: 'KEEP_ME'    // JSON WebToken
 }
 ```
 
