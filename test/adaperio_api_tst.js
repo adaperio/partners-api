@@ -168,6 +168,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                     assert.notEqual(parsed.link.length,0);
                     assert.notEqual(parsed.signature,0);
                     assert.notEqual(parsed.invId,0);
+                    assert.equal(parsed.price,'350.000000');
 
                     g_invId = parsed.invId;
 
@@ -285,6 +286,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                     assert.notEqual(parsed.link.length,0);
                     assert.notEqual(parsed.signature,0);
                     assert.notEqual(parsed.invId,0);
+                    assert.equal(parsed.price,'350.000000');
 
                     //g_invId2 = parsed.invId;
 
