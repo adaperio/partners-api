@@ -168,7 +168,8 @@ POST /partners/:login/authenticate/v2
 ```javascript
 GET /auth/partners/report_by_num/v3/:num?emails=test%40mail.ru&on_update_callback=www.my-site.ru
 
-Заголовок Authorization должен иметь валидный token, полученный методом #3.
+Заголовок Authorization должен иметь валидный token, полученный методом #3:
+'Authorization': 'Bearer ' + token
 
 Выполняется следующее:
     1. Проверяет токен.
@@ -210,7 +211,8 @@ GET /auth/partners/report_by_num/v3/:num?emails=test%40mail.ru&on_update_callbac
 ```javascript
 GET /auth/partners/report_by_vin/v3/:vin?emails=test%40mail.ru&on_update_callback=www.my-site.ru
 
-Заголовок Authorization должен иметь валидный token, полученный методом #3.
+Заголовок Authorization должен иметь валидный token, полученный методом #3:
+'Authorization': 'Bearer ' + token
 
 Выполняется следующее:
     1. Проверяет токен.
@@ -252,7 +254,8 @@ GET /auth/partners/report_by_vin/v3/:vin?emails=test%40mail.ru&on_update_callbac
 ```javascript
 GET /auth/partners/orders/:invId/email_report/v3/?emails=test%40mail.ru
 
-Заголовок Authorization должен иметь валидный token, полученный методом #3.
+Заголовок Authorization должен иметь валидный token, полученный методом #3:
+'Authorization': 'Bearer ' + token
 
 Выполняется следующее:
     1. Проверяет токен.
@@ -295,7 +298,8 @@ GET /orders/:invId/cars/v2/?signature=b76c0883ca7c4c623315183f6ab2cb0e
 ```javascript
 GET /auth/partners/balance/v3
 
-Заголовок Authorization должен иметь валидный token, полученный методом #3.
+Заголовок Authorization должен иметь валидный token, полученный методом #3:
+'Authorization': 'Bearer ' + token
 
 Выполняется следующее:
     1. Проверяет токен.
@@ -313,7 +317,8 @@ GET /auth/partners/balance/v3
 ```javascript
 GET /auth/partners/orders/:invId/pdf_report/v3
 
-Заголовок Authorization должен иметь валидный token, полученный методом #3.
+Заголовок Authorization должен иметь валидный token, полученный методом #3:
+'Authorization': 'Bearer ' + token
 
 Выполняется следующее:
     1. Проверяет токен.
