@@ -59,7 +59,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var num = 'а999му199';
           var numEncoded = encodeURIComponent(num);    // url encoding
 
-          https.get('https://partner.api.adaperio.ru/v1/data_for_cars/' + numEncoded, function (res) {
+          https.get('https://partner.api.adaperio.ru/data_for_cars/v2/' + numEncoded, function (res) {
                assert.equal(200, res.statusCode);
 
                var data = '';
@@ -82,6 +82,9 @@ describe('ADAPERIO PARTNER-interaction module',function(){
 
                     assert.equal(car.milleageFound,true);
                     assert.equal(typeof(car.milleageArr),'undefined');
+
+                    assert.equal(car.priceCategory, 2);
+
                     // ...
                     done();
                }); 
@@ -168,7 +171,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                     assert.notEqual(parsed.link.length,0);
                     assert.notEqual(parsed.signature,0);
                     assert.notEqual(parsed.invId,0);
-                    assert.equal(parsed.price,'350.000000');
+                    assert.equal(parsed.priceCategory,2);
 
                     g_invId = parsed.invId;
 
@@ -286,7 +289,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
                     assert.notEqual(parsed.link.length,0);
                     assert.notEqual(parsed.signature,0);
                     assert.notEqual(parsed.invId,0);
-                    assert.equal(parsed.price,'350.000000');
+                    assert.equal(parsed.priceCategory,2);
 
                     //g_invId2 = parsed.invId;
 
