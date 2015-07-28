@@ -46,7 +46,7 @@ http://www.adaperio.ru/engine.html#/success?InvId=313480536&SignatureValue=50798
 
 ## Описание API
 Для работы используются REST-подобное API с JSON в качестве передаваемых данных. 
-Адреса наших backend серверов: **partner.api.adaperio.ru**.
+Адреса наших backend серверов: **api-partner.adaperio.ru**.
 ВНИМАНИЕ: запрещено кэшировать IP адреса серверов. 
 
 ### 1. Получить данные о наличии информации об автомобиле
