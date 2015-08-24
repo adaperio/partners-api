@@ -103,12 +103,6 @@ GET /data_for_cars/v2/:num
      // Найдены ли сведения из таможни
      "customsFound":false,
 
-     // В розыске ли автомобиль
-     "gibddWanted":false,
-
-     // Есть ли ограничения
-     "gibddRestricted":false,
-
      // Есть ли информация о комплектации
      "equipInfoFound":false,
 
