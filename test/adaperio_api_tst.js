@@ -5,8 +5,8 @@ var https = require('https');
 var assert = require('assert');
 var url = require('url');
 
-var LOGIN = '';     // TODO: set your login here
-var PASSWORD = '';  // TODO: set your password here
+var LOGIN = '';        // TODO: set your login here
+var PASSWORD = '';          // TODO: set your password here
 
 var EMAILS = 'one@g_m_a_il.com,two@y_a_nd_ex.ru'; // TODO: send report here
 
@@ -59,7 +59,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var num = 'а999му199';
           var numEncoded = encodeURIComponent(num);    // url encoding
 
-          https.get('https://partner.api.adaperio.ru/data_for_cars/v2/' + numEncoded, function (res) {
+          https.get('https://api-partner.adaperio.ru/data_for_cars/v2/' + numEncoded, function (res) {
                assert.equal(200, res.statusCode);
 
                var data = '';
@@ -103,7 +103,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var path = '/partners/' + partnerLogin + '/authenticate/v2';
 
           var post_options = {
-               host: 'partner.api.adaperio.ru',
+               host: 'api-partner.adaperio.ru',
                path: path,
                method: 'POST',
                headers: {
@@ -147,7 +147,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var path = '/auth/partners/report_by_num/v3/' + numEncoded + '?emails=' + emailsEncoded;
 
           var post_options = {
-               host: 'partner.api.adaperio.ru',
+               host: 'api-partner.adaperio.ru',
                port: '443',
                path: path,
                method: 'GET',
@@ -193,7 +193,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var path = '/auth/partners/orders/' + g_invId + '/email_report/v3/' + '?emails=' + emailAddresses;
 
           var post_options = {
-               host: 'partner.api.adaperio.ru',
+               host: 'api-partner.adaperio.ru',
                port: '443',
                path: path,
                method: 'GET',
@@ -222,7 +222,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var path = '/auth/partners/orders/' + g_invId + '/pdf_report/v3';
 
           var post_options = {
-               host: 'partner.api.adaperio.ru',
+               host: 'api-partner.adaperio.ru',
                port: '443',
                path: path,
                method: 'GET',
@@ -265,7 +265,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var path = '/auth/partners/report_by_vin/v3/' + vin + '?emails=' + emailsEncoded;
 
           var post_options = {
-               host: 'partner.api.adaperio.ru',
+               host: 'api-partner.adaperio.ru',
                port: '443',
                path: path,
                method: 'GET',
@@ -308,7 +308,7 @@ describe('ADAPERIO PARTNER-interaction module',function(){
           var path = '/auth/partners/balance/v3';
 
           var post_options = {
-               host: 'partner.api.adaperio.ru',
+               host: 'api-partner.adaperio.ru',
                port: '443',
                path: path,
                method: 'GET',
